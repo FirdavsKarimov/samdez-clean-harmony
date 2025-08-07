@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone, Shield, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import heroImage from '@/assets/hero-pest-control.jpg';
+import heroImage from '@/assets/hero-image-new.jpg';
 import floatingParticles from '@/assets/floating-particles.jpg';
 
 const HeroSection: React.FC = () => {
