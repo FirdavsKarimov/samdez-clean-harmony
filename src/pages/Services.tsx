@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'react-router-dom';
+import pageBgPattern from '@/assets/page-bg-pattern.jpg';
 
 const Services = () => {
   const { t } = useLanguage();
@@ -77,7 +78,17 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div 
+      className="min-h-screen bg-background relative"
+      style={{
+        backgroundImage: `url(${pageBgPattern})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
+      <div className="relative z-10">
       
       {/* Hero Section */}
       <section className="py-20 bg-gradient-service">
@@ -228,6 +239,7 @@ const Services = () => {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 };

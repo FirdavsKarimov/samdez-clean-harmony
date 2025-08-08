@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
             <div className="space-y-4">
               <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                 <CheckCircle className="w-5 h-5 text-white" />
-                <span className="text-white text-sm font-medium">Certified & Eco-Friendly</span>
+                <span className="text-white text-sm font-medium">{t('hero.certified')} & {t('hero.eco_safe')}</span>
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
@@ -68,7 +68,7 @@ const HeroSection: React.FC = () => {
                 variant="outline" 
                 className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
               >
-                Learn More
+                {t('hero.learn_more')}
               </Button>
             </div>
 
@@ -79,7 +79,7 @@ const HeroSection: React.FC = () => {
                   <Phone className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-white/80 text-sm">24/7 Emergency Service</p>
+                  <p className="text-white/80 text-sm">{t('hero.emergency_service')}</p>
                   <p className="text-white font-bold text-lg">+998 90 123 45 67</p>
                 </div>
               </div>
@@ -88,9 +88,9 @@ const HeroSection: React.FC = () => {
             {/* Features */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {[
-                { icon: Shield, label: 'Certified' },
-                { icon: CheckCircle, label: 'Eco-Safe' },
-                { icon: Phone, label: '24/7 Support' },
+                { icon: Shield, label: t('hero.certified') },
+                { icon: CheckCircle, label: t('hero.eco_safe') },
+                { icon: Phone, label: t('hero.support_24_7') },
               ].map(({ icon: Icon, label }, index) => (
                 <div 
                   key={label}
@@ -117,14 +117,14 @@ const HeroSection: React.FC = () => {
               <div className="absolute -top-6 -left-6 bg-white rounded-lg shadow-card p-4 animate-bounce-in" style={{ animationDelay: '1s' }}>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-primary">500+</div>
-                  <div className="text-xs text-muted-foreground">Happy Clients</div>
+                  <div className="text-xs text-muted-foreground">{t('hero.happy_clients')}</div>
                 </div>
               </div>
               
               <div className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-card p-4 animate-bounce-in" style={{ animationDelay: '1.5s' }}>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-secondary">100%</div>
-                  <div className="text-xs text-muted-foreground">Eco-Safe</div>
+                  <div className="text-xs text-muted-foreground">{t('hero.eco_safe_percent')}</div>
                 </div>
               </div>
             </div>

@@ -17,39 +17,39 @@ const TrustSection: React.FC = () => {
   const trustFactors = [
     {
       icon: Shield,
-      title: 'Certified & Licensed',
-      description: 'Fully licensed and certified by health authorities',
+      title: t('trust.certified_title'),
+      description: t('trust.certified_desc'),
       color: 'text-primary',
       bgColor: 'bg-primary/10',
     },
     {
       icon: Leaf,
-      title: 'Eco-Friendly Products',
-      description: 'Safe for children, pets, and the environment',
+      title: t('trust.eco_title'),
+      description: t('trust.eco_desc'),
       color: 'text-secondary',
       bgColor: 'bg-secondary/10',
     },
     {
       icon: Award,
-      title: '5+ Years Experience',
-      description: 'Proven track record with thousands of satisfied clients',
+      title: t('trust.experience'),
+      description: t('trust.certified_desc'),
       color: 'text-safety-orange',
       bgColor: 'bg-safety-orange/10',
     },
     {
       icon: Clock,
-      title: '24/7 Emergency Service',
-      description: 'Available round the clock for urgent situations',
+      title: t('trust.support_title'),
+      description: t('trust.support_desc'),
       color: 'text-trust-blue',
       bgColor: 'bg-trust-blue/10',
     },
   ];
 
   const stats = [
-    { number: '500+', label: 'Happy Clients', icon: Users },
-    { number: '100%', label: 'Eco-Safe', icon: Leaf },
-    { number: '24/7', label: 'Support', icon: Clock },
-    { number: '5★', label: 'Rating', icon: Star },
+    { number: '500+', label: t('trust.projects'), icon: Users },
+    { number: '100%', label: t('trust.eco_title'), icon: Leaf },
+    { number: '24/7', label: t('trust.support_title'), icon: Clock },
+    { number: '5★', label: t('trust.satisfaction'), icon: Star },
   ];
 
   return (
@@ -59,7 +59,7 @@ const TrustSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Why Choose SamDez?
+            {t('trust.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Your trusted partner for safe, effective, and environmentally responsible pest control solutions

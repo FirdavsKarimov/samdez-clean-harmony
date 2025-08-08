@@ -71,7 +71,7 @@ const ServicesOverview: React.FC = () => {
             {t('services.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Professional pest control and disinfection services tailored to your specific needs
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -99,7 +99,7 @@ const ServicesOverview: React.FC = () => {
                         {t(service.titleKey)}
                       </h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">
-                        {service.description}
+                        {t(service.titleKey + '_desc')}
                       </p>
                     </div>
 

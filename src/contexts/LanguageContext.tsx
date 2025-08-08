@@ -33,15 +33,95 @@ const translations = {
   },
   'hero.cta': { uz: 'Bepul maslahat', ru: 'Бесплатная консультация', en: 'Free Consultation' },
   'hero.emergency': { uz: 'Favqulodda aloqa: +998 90 123 45 67', ru: 'Экстренная связь: +998 90 123 45 67', en: 'Emergency Contact: +998 90 123 45 67' },
+  'hero.learn_more': { uz: 'Batafsil', ru: 'Узнать больше', en: 'Learn More' },
+  'hero.certified': { uz: 'Sertifikatlangan', ru: 'Сертифицировано', en: 'Certified' },
+  'hero.eco_safe': { uz: 'Ekologik xavfsiz', ru: 'Экологично', en: 'Eco-Safe' },
+  'hero.support_24_7': { uz: '24/7 yordam', ru: 'Поддержка 24/7', en: '24/7 Support' },
+  'hero.emergency_service': { uz: '24/7 Favqulodda xizmat', ru: 'Экстренная служба 24/7', en: '24/7 Emergency Service' },
+  'hero.happy_clients': { uz: 'Mamnun mijozlar', ru: 'Довольных клиентов', en: 'Happy Clients' },
+  'hero.eco_safe_percent': { uz: 'Ekologik xavfsiz', ru: 'Экологично', en: 'Eco-Safe' },
   
   // Services
   'services.title': { uz: 'Bizning xizmatlarimiz', ru: 'Наши услуги', en: 'Our Services' },
+  'services.subtitle': { 
+    uz: 'Professional va xavfsiz xizmatlar turli ehtiyojlar uchun',
+    ru: 'Профессиональные и безопасные услуги для различных потребностей',
+    en: 'Professional and safe services for various needs'
+  },
   'services.home': { uz: 'Uy dezinfeksiyasi', ru: 'Дезинфекция домов', en: 'Home Disinfection' },
+  'services.home_desc': { 
+    uz: 'Sizning uyingizni bakteriya va viruslardan himoya qiling',
+    ru: 'Защитите свой дом от бактерий и вирусов',
+    en: 'Protect your home from bacteria and viruses'
+  },
   'services.office': { uz: 'Ofis va sanoat dezinfeksiyasi', ru: 'Дезинфекция офисов и предприятий', en: 'Office & Industrial Disinfection' },
+  'services.office_desc': { 
+    uz: 'Ish joyingizni xavfsiz va toza saqlang',
+    ru: 'Поддерживайте безопасность и чистоту рабочего места',
+    en: 'Keep your workplace safe and clean'
+  },
   'services.transport': { uz: 'Transport dezinfeksiyasi', ru: 'Дезинфекция транспорта', en: 'Transport Disinfection' },
+  'services.transport_desc': { 
+    uz: 'Avtomobil va jamoat transportini tozalash',
+    ru: 'Очистка автомобилей и общественного транспорта',
+    en: 'Cleaning cars and public transport'
+  },
   'services.antivirus': { uz: 'Anti-virus sterilizatsiya', ru: 'Антивирусная стерилизация', en: 'Anti-virus Sterilization' },
+  'services.antivirus_desc': { 
+    uz: 'Maxsus virusga qarshi tozalash',
+    ru: 'Специальная антивирусная обработка',
+    en: 'Special anti-virus treatment'
+  },
   'services.pest': { uz: 'Zararkunandalar nazorati', ru: 'Борьба с вредителями', en: 'Pest Control' },
+  'services.pest_desc': { 
+    uz: 'Hasharotlar va kemiruvchilardan himoya',
+    ru: 'Защита от насекомых и грызунов',
+    en: 'Protection from insects and rodents'
+  },
   'services.garden': { uz: 'Bog\' va qishloq xo\'jaligi himoyasi', ru: 'Защита садов и сельского хозяйства', en: 'Garden & Agriculture Protection' },
+  'services.garden_desc': { 
+    uz: 'O\'simlik va ekinlarni himoya qilish',
+    ru: 'Защита растений и урожая',
+    en: 'Plant and crop protection'
+  },
+  
+  // Trust Section
+  'trust.title': { uz: 'Nega SamDez?', ru: 'Почему SamDez?', en: 'Why SamDez?' },
+  'trust.experience': { uz: 'Yillik tajriba', ru: 'Лет опыта', en: 'Years Experience' },
+  'trust.projects': { uz: 'Muvaffaqiyatli loyihalar', ru: 'Успешных проектов', en: 'Successful Projects' },
+  'trust.satisfaction': { uz: 'Mijozlar mamnunligi', ru: 'Удовлетворенность клиентов', en: 'Client Satisfaction' },
+  'trust.certified_title': { uz: 'Sertifikatlangan xizmat', ru: 'Сертифицированный сервис', en: 'Certified Service' },
+  'trust.certified_desc': { 
+    uz: 'Barcha xalqaro standartlarga javob beruvchi sifatli xizmat',
+    ru: 'Качественное обслуживание, соответствующее всем международным стандартам',
+    en: 'Quality service meeting all international standards'
+  },
+  'trust.eco_title': { uz: 'Ekologik mahsulotlar', ru: 'Экологические продукты', en: 'Eco-Friendly Products' },
+  'trust.eco_desc': { 
+    uz: 'Inson va atrof-muhit uchun xavfsiz kimyoviy moddalar',
+    ru: 'Безопасные для человека и окружающей среды химические вещества',
+    en: 'Chemicals safe for humans and the environment'
+  },
+  'trust.support_title': { uz: '24/7 qo\'llab-quvvatlash', ru: 'Поддержка 24/7', en: '24/7 Support' },
+  'trust.support_desc': { 
+    uz: 'Favqulodda vaziyatlarda har doim tayyormiz',
+    ru: 'Всегда готовы помочь в экстренных ситуациях',
+    en: 'Always ready to help in emergency situations'
+  },
+  
+  // Contact Form
+  'form.title': { uz: 'Bepul maslahat oling', ru: 'Получите бесплатную консультацию', en: 'Get Free Consultation' },
+  'form.subtitle': { 
+    uz: 'Bizning mutaxassislarimiz sizga yordam berishga tayyor',
+    ru: 'Наши специалисты готовы вам помочь',
+    en: 'Our specialists are ready to help you'
+  },
+  'form.name': { uz: 'Ismingiz', ru: 'Ваше имя', en: 'Your Name' },
+  'form.phone': { uz: 'Telefon raqamingiz', ru: 'Ваш телефон', en: 'Your Phone' },
+  'form.service': { uz: 'Xizmat turini tanlang', ru: 'Выберите тип услуги', en: 'Select Service Type' },
+  'form.message': { uz: 'Xabaringiz', ru: 'Ваше сообщение', en: 'Your Message' },
+  'form.submit': { uz: 'Yuborish', ru: 'Отправить', en: 'Submit' },
+  'form.success': { uz: 'Xabaringiz yuborildi!', ru: 'Ваше сообщение отправлено!', en: 'Your message has been sent!' },
   
   // About
   'about.title': { uz: 'SamDez haqida', ru: 'О компании SamDez', en: 'About SamDez' },
