@@ -1,154 +1,213 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { 
   ChevronDown, 
-  ChevronRight,
+  ChevronUp,
+  HelpCircle,
+  Phone,
+  MessageCircle,
   Shield,
   Clock,
-  DollarSign,
-  Home,
-  Phone,
-  CheckCircle
+  CheckCircle,
+  AlertTriangle,
+  FileText,
+  Users,
+  Star
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useState } from 'react';
-import pageBgPattern from '@/assets/page-bg-pattern.jpg';
 
 const FAQ = () => {
   const { t } = useLanguage();
-  const [openFAQ, setOpenFAQ] = useState<number | null>(0);
+  const [activeCategory, setActiveCategory] = useState('general');
+  const [openItems, setOpenItems] = useState<{ [key: string]: boolean }>({});
 
-  const faqCategories = [
+  const categories = [
+    { id: 'general', name: t('faq.general'), icon: HelpCircle },
+    { id: 'services', name: t('faq.services'), icon: Shield },
+    { id: 'safety', name: t('faq.safety'), icon: CheckCircle },
+    { id: 'pricing', name: t('faq.pricing'), icon: Star },
+    { id: 'emergency', name: t('faq.emergency'), icon: AlertTriangle }
+  ];
+
+  const faqData = {
+    general: [
+      {
+        question: t('faq.what_services'),
+        answer: t('faq.what_services_answer')
+      },
+      {
+        question: t('faq.how_long'),
+        answer: t('faq.how_long_answer')
+      },
+      {
+        question: t('faq.eco_friendly'),
+        answer: t('faq.eco_friendly_answer')
+      }
+    ],
+    services: [
+      {
+        question: t('faq.home_treatment'),
+        answer: t('faq.home_treatment_answer')
+      },
+      {
+        question: t('faq.office_treatment'),
+        answer: t('faq.office_treatment_answer')
+      },
+      {
+        question: t('faq.transport_treatment'),
+        answer: t('faq.transport_treatment_answer')
+      }
+    ],
+    safety: [
+      {
+        question: t('faq.safe_for_pets'),
+        answer: t('faq.safe_for_pets_answer')
+      },
+      {
+        question: t('faq.safe_for_children'),
+        answer: t('faq.safe_for_children_answer')
+      },
+      {
+        question: t('faq.ventilation_needed'),
+        answer: t('faq.ventilation_needed_answer')
+      }
+    ],
+    pricing: [
+      {
+        question: t('faq.pricing_structure'),
+        answer: t('faq.pricing_structure_answer')
+      },
+      {
+        question: t('faq.free_consultation'),
+        answer: t('faq.free_consultation_answer')
+      },
+      {
+        question: t('faq.payment_methods'),
+        answer: t('faq.payment_methods_answer')
+      }
+    ],
+    emergency: [
+      {
+        question: t('faq.emergency_response'),
+        answer: t('faq.emergency_response_answer')
+      },
+      {
+        question: t('faq.after_hours'),
+        answer: t('faq.after_hours_answer')
+      },
+      {
+        question: t('faq.urgent_situations'),
+        answer: t('faq.urgent_situations_answer')
+      }
+    ]
+  };
+
+  const toggleItem = (itemId: string) => {
+    setOpenItems(prev => ({
+      ...prev,
+      [itemId]: !prev[itemId]
+    }));
+  };
+
+  const quickTips = [
     {
-      title: 'Service Safety',
       icon: Shield,
-      color: 'text-primary',
-      questions: [
-        {
-          question: 'Are your treatments safe for children and pets?',
-          answer: 'Yes, absolutely. We use only eco-friendly, certified products that are safe for children and pets when applied correctly. Our treatments target specific pests while being harmless to humans and animals. We also provide detailed safety instructions and waiting periods when necessary.'
-        },
-        {
-          question: 'What safety measures do your technicians follow?',
-          answer: 'Our technicians are fully trained and certified, wearing protective equipment during treatments. They follow strict safety protocols, properly ventilate treated areas, and ensure all products are applied according to manufacturer guidelines and local regulations.'
-        },
-        {
-          question: 'Do I need to leave my home during treatment?',
-          answer: 'In most cases, you can stay in your home during treatment. For certain intensive treatments, we may recommend leaving for 2-4 hours. We always inform you in advance if temporary evacuation is needed and provide clear return instructions.'
-        }
+      title: t('faq.immediate_safety'),
+      tips: [
+        t('faq.safety_children_pets'),
+        t('faq.safety_no_sprays'),
+        t('faq.safety_ventilate')
       ]
     },
     {
-      title: 'Scheduling & Process',
       icon: Clock,
-      color: 'text-secondary',
-      questions: [
-        {
-          question: 'How quickly can you respond to emergency calls?',
-          answer: 'We offer 24/7 emergency service with response times typically within 2-4 hours for urgent situations. Emergency calls include situations with health risks, large infestations, or commercial food service disruptions.'
-        },
-        {
-          question: 'How long does a typical treatment take?',
-          answer: 'Treatment time varies by property size and infestation level. Residential treatments typically take 1-3 hours, while commercial properties may require 4-8 hours. We provide estimated timeframes during initial consultation.'
-        },
-        {
-          question: 'Do you provide follow-up services?',
-          answer: 'Yes, follow-up is included in all our service packages. We typically schedule follow-up visits 7-14 days after initial treatment to ensure effectiveness and make any necessary adjustments at no additional cost.'
-        }
+      title: t('faq.preparation'),
+      tips: [
+        t('faq.prep_remove_food'),
+        t('faq.prep_clear_access'),
+        t('faq.prep_note_activity')
       ]
     },
     {
-      title: 'Pricing & Guarantees',
-      icon: DollarSign,
-      color: 'text-safety-orange',
-      questions: [
-        {
-          question: 'Do you offer free consultations and quotes?',
-          answer: 'Yes, we provide completely free on-site consultations and detailed quotes. Our experts will assess your situation, identify pest types, and recommend the most effective treatment plan with transparent pricing.'
-        },
-        {
-          question: 'What is included in your service guarantee?',
-          answer: 'We offer a 30-day satisfaction guarantee on all treatments. If pests return within the guarantee period, we will re-treat your property at no additional charge. Some treatments include extended warranties up to 6 months.'
-        },
-        {
-          question: 'Do you offer payment plans or discounts?',
-          answer: 'We offer various payment options including installment plans for larger commercial projects. We also provide discounts for regular maintenance contracts, senior citizens, and multiple service bookings.'
-        }
-      ]
-    },
-    {
-      title: 'Property Types',
-      icon: Home,
-      color: 'text-trust-blue',
-      questions: [
-        {
-          question: 'Do you service both residential and commercial properties?',
-          answer: 'Yes, we provide comprehensive services for homes, apartments, offices, restaurants, warehouses, factories, and all types of commercial facilities. Each property type receives customized treatment plans.'
-        },
-        {
-          question: 'Can you treat outdoor areas and gardens?',
-          answer: 'Absolutely. We offer specialized outdoor treatments for gardens, yards, patios, and agricultural areas. Our outdoor treatments are designed to be environmentally responsible while effectively controlling pests.'
-        },
-        {
-          question: 'Do you provide preventive maintenance programs?',
-          answer: 'Yes, we offer customized preventive maintenance programs with regular scheduled visits to prevent infestations before they occur. These programs are especially popular with restaurants, hotels, and other commercial facilities.'
-        }
+      icon: FileText,
+      title: t('faq.documentation'),
+      tips: [
+        t('faq.doc_photos'),
+        t('faq.doc_time_activity'),
+        t('faq.doc_record')
       ]
     }
   ];
 
-  const toggleFAQ = (categoryIndex: number, questionIndex: number) => {
-    const faqId = categoryIndex * 100 + questionIndex;
-    setOpenFAQ(openFAQ === faqId ? null : faqId);
-  };
-
   return (
-    <div 
-      className="min-h-screen bg-background relative"
-      style={{
-        backgroundImage: `url(${pageBgPattern})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-      }}
-    >
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
-      <div className="relative z-10">
-      
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-service">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              {t('nav.faq')}
+      <section className="relative py-20 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/5 to-indigo-600/10" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50" />
+        
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <HelpCircle className="w-4 h-4" />
+              <span>{t('faq.faq_badge')}</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              {t('faq.title')}
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Get answers to the most common questions about our pest control and disinfection services.
+            
+            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12">
+              {t('faq.get_answers')}
             </p>
+
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap justify-center items-center gap-8 text-gray-500 text-sm">
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <span>{t('faq.expert_answers')}</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Clock className="w-5 h-5 text-blue-500" />
+                <span>{t('faq.support_24_7')}</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Users className="w-5 h-5 text-purple-500" />
+                <span>{t('faq.professional_team')}</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Categories */}
-      <section className="py-20">
+      {/* Main Content */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             
-            {/* Category Navigation */}
+            {/* Categories Sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-24">
-                <h2 className="text-xl font-bold text-foreground mb-6">Categories</h2>
+              <div className="bg-white rounded-2xl shadow-xl p-6 sticky top-8">
+                <h3 className="text-lg font-bold text-gray-900 mb-6">
+                  {t('faq.categories')}
+                </h3>
                 <div className="space-y-2">
-                  {faqCategories.map((category, index) => {
+                  {categories.map((category) => {
                     const IconComponent = category.icon;
                     return (
                       <button
-                        key={category.title}
-                        className="w-full flex items-center space-x-3 p-3 rounded-lg text-left hover:bg-accent transition-smooth"
-                        onClick={() => document.getElementById(`category-${index}`)?.scrollIntoView({ behavior: 'smooth' })}
+                        key={category.id}
+                        onClick={() => setActiveCategory(category.id)}
+                        className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-300 ${
+                          activeCategory === category.id
+                            ? 'bg-blue-500 text-white shadow-lg'
+                            : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                        }`}
                       >
-                        <IconComponent className={`w-5 h-5 ${category.color}`} />
-                        <span className="text-sm font-medium text-foreground">{category.title}</span>
+                        <IconComponent className="w-5 h-5" />
+                        <span className="font-medium">{category.name}</span>
                       </button>
                     );
                   })}
@@ -157,53 +216,34 @@ const FAQ = () => {
             </div>
 
             {/* FAQ Content */}
-            <div className="lg:col-span-3 space-y-12">
-              {faqCategories.map((category, categoryIndex) => {
-                const IconComponent = category.icon;
-                return (
-                  <div key={category.title} id={`category-${categoryIndex}`} className="animate-fade-in">
-                    
-                    {/* Category Header */}
-                    <div className="flex items-center space-x-3 mb-8">
-                      <div className={`w-12 h-12 bg-${category.color.split('-')[1]}/10 rounded-lg flex items-center justify-center`}>
-                        <IconComponent className={`w-6 h-6 ${category.color}`} />
-                      </div>
-                      <h2 className="text-2xl font-bold text-foreground">{category.title}</h2>
-                    </div>
-
-                    {/* Questions */}
-                    <div className="space-y-4">
-                      {category.questions.map((faq, questionIndex) => {
-                        const faqId = categoryIndex * 100 + questionIndex;
-                        const isOpen = openFAQ === faqId;
+            <div className="lg:col-span-3">
+              <div className="space-y-6">
+                {faqData[activeCategory as keyof typeof faqData]?.map((item, index) => {
+                  const itemId = `${activeCategory}-${index}`;
+                  const isOpen = openItems[itemId];
                         
                         return (
-                          <Card key={questionIndex} className="shadow-soft border-0 bg-gradient-card">
-                            <CardContent className="p-0">
-                              
-                              {/* Question */}
+                    <Card key={index} className="border-0 shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
+                      <CardContent className="p-6">
                               <button
-                                className="w-full flex items-center justify-between p-6 text-left hover:bg-accent/50 transition-smooth rounded-lg"
-                                onClick={() => toggleFAQ(categoryIndex, questionIndex)}
+                          onClick={() => toggleItem(itemId)}
+                          className="w-full flex items-center justify-between text-left"
                               >
-                                <h3 className="text-lg font-semibold text-foreground pr-4">
-                                  {faq.question}
+                          <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                            {item.question}
                                 </h3>
                                 {isOpen ? (
-                                  <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                            <ChevronUp className="w-6 h-6 text-blue-500 flex-shrink-0" />
                                 ) : (
-                                  <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                            <ChevronDown className="w-6 h-6 text-gray-400 flex-shrink-0" />
                                 )}
                               </button>
 
-                              {/* Answer */}
                               {isOpen && (
-                                <div className="px-6 pb-6 animate-fade-in">
-                                  <div className="border-t border-border pt-4">
-                                    <p className="text-muted-foreground leading-relaxed">
-                                      {faq.answer}
-                                    </p>
-                                  </div>
+                          <div className="mt-4 pt-4 border-t border-gray-200">
+                            <p className="text-gray-600 leading-relaxed">
+                              {item.answer}
+                            </p>
                                 </div>
                               )}
                             </CardContent>
@@ -211,96 +251,75 @@ const FAQ = () => {
                         );
                       })}
                     </div>
-                  </div>
-                );
-              })}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Quick Tips */}
-      <section className="py-20 bg-accent/30">
+      {/* Quick Tips Section */}
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Quick Tips
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              {t('faq.quick_tips')}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Simple things you can do while waiting for our service
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              {t('faq.quick_tips_desc')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Shield,
-                title: 'Immediate Safety',
-                tips: ['Keep children and pets away from infested areas', 'Don\'t use household sprays before professional treatment', 'Ventilate the area if using any cleaning products']
-              },
-              {
-                icon: Home,
-                title: 'Preparation',
-                tips: ['Remove food items from treatment areas', 'Clear access to infested areas', 'Note where you\'ve seen the most pest activity']
-              },
-              {
-                icon: Phone,
-                title: 'Documentation',
-                tips: ['Take photos of pest damage or sightings', 'Note the time of day pests are most active', 'Keep a record of where you\'ve seen pests']
-              }
-            ].map((tip, index) => {
+            {quickTips.map((tip, index) => {
               const IconComponent = tip.icon;
               return (
-                <Card 
-                  key={tip.title}
-                  className="bg-background shadow-soft animate-fade-in"
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <CardContent className="p-6">
-                    <div className="text-center mb-4">
-                      <IconComponent className="w-12 h-12 text-primary mx-auto mb-3" />
-                      <h3 className="text-lg font-semibold text-foreground">{tip.title}</h3>
+                <div key={tip.title} className="group">
+                  <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <IconComponent className="w-8 h-8 text-white" />
                     </div>
-                    <ul className="space-y-2">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">
+                      {tip.title}
+                    </h3>
+                    <ul className="space-y-3">
                       {tip.tips.map((tipText, i) => (
-                        <li key={i} className="flex items-start space-x-2 text-sm text-muted-foreground">
-                          <CheckCircle className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" />
+                        <li key={i} className="flex items-start space-x-3 text-gray-600">
+                          <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                           <span>{tipText}</span>
                         </li>
                       ))}
                     </ul>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Still Have Questions CTA */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Still Have Questions?
+          <div className="text-center max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              {t('faq.still_have_questions')}
             </h2>
-            <p className="text-xl text-primary-foreground/90 mb-8">
-              Our expert team is available 24/7 to answer any questions and provide personalized solutions.
+            <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+              Our expert team is here to help you with any questions or concerns you may have.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-white/90 transition-smooth shadow-card">
-                <Phone className="w-5 h-5 inline mr-2" />
-                Call: +998 90 123 45 67
-              </button>
-              <button className="border border-white/30 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-smooth">
-                <CheckCircle className="w-5 h-5 inline mr-2" />
-                Live Chat Support
-              </button>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl">
+                <Phone className="w-5 h-5 mr-2" />
+                {t('faq.call_us')}: +998 90 123 45 67
+              </Button>
+              <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-600 py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                {t('faq.live_chat')}
+              </Button>
             </div>
           </div>
         </div>
       </section>
-      </div>
     </div>
   );
 };

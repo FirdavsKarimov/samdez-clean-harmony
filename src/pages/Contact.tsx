@@ -11,10 +11,12 @@ import {
   Send,
   MessageCircle,
   Shield,
-  CheckCircle
+  CheckCircle,
+  ArrowRight,
+  Star
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import pageBgPattern from '@/assets/page-bg-pattern.jpg';
+import { backgroundImages } from '@/assets/backgrounds';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -28,7 +30,6 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log('Form submitted:', formData);
   };
 
@@ -44,210 +45,236 @@ const Contact = () => {
       icon: Phone,
       title: t('contact.phone'),
       details: ['+998 90 123 45 67', '+998 91 987 65 43'],
-      color: 'text-primary'
+      color: 'bg-blue-500',
+      bgGradient: 'from-blue-500 to-blue-600'
     },
     {
       icon: Mail,
       title: t('contact.email'),
-      details: ['info@samdez.uz', 'emergency@samdez.uz'],
-      color: 'text-secondary'
+      details: ['info@SamDezin.uz', 'emergency@SamDezin.uz'],
+      color: 'bg-green-500',
+      bgGradient: 'from-green-500 to-green-600'
     },
     {
       icon: MapPin,
       title: t('contact.address'),
       details: ['Tashkent, Uzbekistan', 'Yunusobod District'],
-      color: 'text-trust-blue'
+      color: 'bg-purple-500',
+      bgGradient: 'from-purple-500 to-purple-600'
     },
     {
       icon: Clock,
-      title: 'Working Hours',
-      details: ['Mon-Fri: 8:00 - 18:00', 'Emergency: 24/7'],
-      color: 'text-safety-orange'
+      title: t('working_hours'),
+      details: [t('working_hours_weekdays'), t('working_hours_emergency')],
+      color: 'bg-orange-500',
+      bgGradient: 'from-orange-500 to-orange-600'
     }
   ];
 
   return (
-    <div 
-      className="min-h-screen bg-background relative"
-      style={{
-        backgroundImage: `url(${pageBgPattern})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-      }}
-    >
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
-      <div className="relative z-10">
-      
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-service">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+      <section className="relative py-20 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/5 to-indigo-600/10" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50" />
+        
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <MessageCircle className="w-4 h-4" />
+              <span>{t('contact.get_free_consultation')}</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               {t('contact.title')}
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Ready to solve your pest problem? Get in touch with our expert team for immediate assistance.
+            
+            <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-12">
+              {t('contact.ready_to_solve')}
             </p>
+
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap justify-center items-center gap-8 text-gray-500 text-sm">
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <span>24/7 Support</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Shield className="w-5 h-5 text-blue-500" />
+                <span>Certified Experts</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Star className="w-5 h-5 text-yellow-500" />
+                <span>500+ Happy Clients</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="py-20">
+      {/* Main Content */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
             {/* Contact Form */}
-            <div className="animate-fade-in">
-              <Card className="shadow-card border-0 bg-gradient-card">
+            <div className="order-2 lg:order-1">
+              <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
                 <CardContent className="p-8">
-                  <div className="space-y-6">
-                    
-                    <div className="text-center">
-                      <h2 className="text-2xl font-bold text-foreground mb-2">Get Free Consultation</h2>
-                      <p className="text-muted-foreground">Fill out the form and we'll contact you within 30 minutes</p>
+                  <div className="mb-8">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                      {t('contact.get_free_consultation')}
+                    </h2>
+                    <p className="text-gray-600">
+                      {t('contact.fill_form_desc')}
+                    </p>
+                  </div>
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          {t('contact.name')}
+                        </label>
+                        <Input
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder={t('contact.name_placeholder')}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          required
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          {t('contact.phone_placeholder')}
+                        </label>
+                        <Input
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          placeholder="+998 90 123 45 67"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        />
+                      </div>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="text-sm font-medium text-foreground mb-2 block">Name *</label>
-                          <Input
-                            name="name"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            placeholder="Your full name"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-foreground mb-2 block">Phone *</label>
-                          <Input
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                            placeholder="+998 90 123 45 67"
-                            required
-                          />
-                        </div>
-                      </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Email
+                      </label>
+                      <Input
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="your@email.com"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      />
+                    </div>
 
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">Email</label>
-                        <Input
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="your@email.com"
-                        />
-                      </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        {t('contact.service_needed')}
+                      </label>
+                      <select
+                        name="service"
+                        value={formData.service}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white"
+                      >
+                        <option value="">{t('contact.select_service')}</option>
+                        <option value="home">{t('contact.service.home')}</option>
+                        <option value="office">{t('contact.service.office')}</option>
+                        <option value="transport">{t('contact.service.transport')}</option>
+                        <option value="pest">{t('contact.service.pest')}</option>
+                        <option value="garden">{t('contact.service.garden')}</option>
+                        <option value="emergency">{t('contact.service.emergency')}</option>
+                      </select>
+                    </div>
 
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">Service Needed</label>
-                        <select
-                          name="service"
-                          value={formData.service}
-                          onChange={handleInputChange}
-                          className="w-full p-3 border border-border rounded-lg bg-background focus:ring-2 focus:ring-primary focus:border-transparent"
-                        >
-                          <option value="">Select a service</option>
-                          <option value="home">Home Disinfection</option>
-                          <option value="office">Office Disinfection</option>
-                          <option value="transport">Transport Disinfection</option>
-                          <option value="pest">Pest Control</option>
-                          <option value="garden">Garden Protection</option>
-                          <option value="emergency">Emergency Service</option>
-                        </select>
-                      </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        {t('contact.message_placeholder')}
+                      </label>
+                      <Textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        placeholder={t('contact.message_placeholder')}
+                        rows={4}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                      />
+                    </div>
 
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">Message</label>
-                        <Textarea
-                          name="message"
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          placeholder="Describe your pest problem or service needs..."
-                          rows={4}
-                        />
-                      </div>
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    >
+                      <Send className="w-5 h-5 mr-2" />
+                      {t('contact.send_message')}
+                    </Button>
 
-                      <Button type="submit" size="lg" className="w-full">
-                        <Send className="w-5 h-5 mr-2" />
-                        Send Message
-                      </Button>
-
-                      <div className="text-center">
-                        <p className="text-xs text-muted-foreground">
-                          By submitting this form, you agree to our privacy policy
-                        </p>
-                      </div>
-                    </form>
-                  </div>
+                    <p className="text-xs text-gray-500 text-center">
+                      {t('contact.privacy_policy')}
+                    </p>
+                  </form>
                 </CardContent>
               </Card>
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-8 animate-slide-up">
-              
-              {/* Contact Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="order-1 lg:order-2">
+              <div className="space-y-6">
                 {contactInfo.map((info, index) => {
                   const IconComponent = info.icon;
                   return (
-                    <Card 
-                      key={info.title}
-                      className="service-card shadow-soft border-0 bg-background animate-fade-in"
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                    >
-                      <CardContent className="p-6 text-center">
-                        <div className={`w-12 h-12 bg-${info.color.split('-')[1]}/10 rounded-full flex items-center justify-center mx-auto mb-4`}>
-                          <IconComponent className={`w-6 h-6 ${info.color}`} />
+                    <Card key={index} className="border-0 shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                      <CardContent className="p-6">
+                        <div className="flex items-start space-x-4">
+                          <div className={`w-12 h-12 ${info.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                            <IconComponent className="w-6 h-6 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                              {info.title}
+                            </h3>
+                            <div className="space-y-1">
+                              {info.details.map((detail, i) => (
+                                <p key={i} className="text-gray-600">
+                                  {detail}
+                                </p>
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                        <h3 className="text-lg font-semibold text-foreground mb-2">{info.title}</h3>
-                        {info.details.map((detail, i) => (
-                          <p key={i} className="text-muted-foreground text-sm">{detail}</p>
-                        ))}
                       </CardContent>
                     </Card>
                   );
                 })}
               </div>
 
-              {/* Emergency Contact */}
-              <Card className="bg-destructive text-destructive-foreground shadow-card">
-                <CardContent className="p-6 text-center">
-                  <Shield className="w-12 h-12 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold mb-2">24/7 Emergency Service</h3>
-                  <p className="text-destructive-foreground/90 mb-4">
-                    Urgent pest problems? We're available around the clock
-                  </p>
-                  <Button variant="secondary" size="lg" className="shadow-card">
-                    <Phone className="w-5 h-5 mr-2" />
-                    +998 90 123 45 67
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Quick Facts */}
-              <Card className="bg-secondary text-secondary-foreground shadow-card">
+              {/* Emergency Service Card */}
+              <Card className="mt-8 border-0 bg-gradient-to-r from-red-500 to-red-600 text-white shadow-2xl">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-4 text-center">Why Choose Our Service?</h3>
-                  <div className="space-y-3">
-                    {[
-                      'Response within 30 minutes',
-                      'Free consultation and quote',
-                      '30-day satisfaction guarantee',
-                      'Eco-friendly products only'
-                    ].map((fact, index) => (
-                      <div key={index} className="flex items-center space-x-3">
-                        <CheckCircle className="w-5 h-5" />
-                        <span className="text-sm">{fact}</span>
-                      </div>
-                    ))}
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                      <Shield className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-1">
+                        {t('contact.emergency_service_title')}
+                      </h3>
+                      <p className="text-red-100 mb-4">
+                        {t('contact.emergency_service_desc')}
+                      </p>
+                      <Button className="bg-white text-red-600 hover:bg-gray-100 font-semibold">
+                        <Phone className="w-4 h-4 mr-2" />
+                        +998 90 123 45 67
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -257,66 +284,32 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-accent/30">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Find Us</h2>
-            <p className="text-lg text-muted-foreground">We serve all areas of Tashkent and surrounding regions</p>
-          </div>
-
-          <Card className="shadow-card border-0 overflow-hidden animate-slide-up">
-            <div className="aspect-video bg-muted flex items-center justify-center">
-              <div className="text-center space-y-4">
-                <MapPin className="w-16 h-16 text-primary mx-auto" />
-                <div>
-                  <h3 className="text-xl font-bold text-foreground">Interactive Map</h3>
-                  <p className="text-muted-foreground">Google Maps integration would go here</p>
-                  <Button variant="outline" className="mt-4">
-                    <MapPin className="w-4 h-4 mr-2" />
-                    Open in Google Maps
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* Social Media & Additional Contact */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center animate-fade-in">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Stay Connected</h2>
-            
-            <div className="flex justify-center space-x-6 mb-8">
-              {[
-                { icon: MessageCircle, label: 'Telegram', color: 'text-blue-500' },
-                { icon: Phone, label: 'WhatsApp', color: 'text-green-500' },
-                { icon: Mail, label: 'Email', color: 'text-red-500' },
-              ].map((social, index) => {
-                const IconComponent = social.icon;
-                return (
-                  <Button
-                    key={social.label}
-                    variant="outline"
-                    size="lg"
-                    className="space-x-2 animate-bounce-in"
-                    style={{ animationDelay: `${index * 0.2}s` }}
-                  >
-                    <IconComponent className={`w-5 h-5 ${social.color}`} />
-                    <span>{social.label}</span>
-                  </Button>
-                );
-              })}
-            </div>
-
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Follow us on social media for pest prevention tips, special offers, and updates on our services.
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Find Us
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              {t('contact.social_media_desc')}
             </p>
           </div>
+          
+          <div className="bg-white rounded-2xl shadow-xl p-8">
+            <div className="aspect-video bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center">
+              <div className="text-center">
+                <MapPin className="w-16 h-16 text-blue-500 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Tashkent, Uzbekistan
+                </h3>
+                <p className="text-gray-600">
+                  Yunusobod District
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-      </div>
     </div>
   );
 };

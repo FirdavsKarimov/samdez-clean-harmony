@@ -22,103 +22,94 @@ const PestsThreats = () => {
 
   const pests = [
     {
-      name: 'Bed Bugs',
+      name: t('pests.bed_bugs'),
       image: bedbugsImage,
-      habitat: 'Mattresses, furniture, carpets, clothing',
-      healthRisk: 'Skin irritation, allergic reactions, sleep disruption',
-      treatment: 'Heat treatment, specialized sprays, mattress encasement',
-      severity: 'High',
+      habitat: t('pests.bed_bugs_habitat'),
+      healthRisk: t('pests.bed_bugs_health'),
+      treatment: t('pests.bed_bugs_treatment'),
+      severity: t('pests.high'),
       color: 'text-destructive'
     },
     {
-      name: 'Cockroaches',
+      name: t('pests.cockroaches'),
       image: cockroachesImage,
-      habitat: 'Kitchen, bathroom, dark warm places',
-      healthRisk: 'Asthma, allergies, food contamination, disease spread',
-      treatment: 'Gel baits, residual sprays, crack and crevice treatment',
-      severity: 'Very High',
+      habitat: t('pests.cockroaches_habitat'),
+      healthRisk: t('pests.cockroaches_health'),
+      treatment: t('pests.cockroaches_treatment'),
+      severity: t('pests.very_high'),
       color: 'text-destructive'
     },
     {
-      name: 'Ants',
+      name: t('pests.ants'),
       image: antsImage,
-      habitat: 'Kitchen, garden, cracks in walls and floors',
-      healthRisk: 'Food contamination, structural damage (carpenter ants)',
-      treatment: 'Ant baits, perimeter treatment, colony elimination',
-      severity: 'Medium',
+      habitat: t('pests.ants_habitat'),
+      healthRisk: t('pests.ants_health'),
+      treatment: t('pests.ants_treatment'),
+      severity: t('pests.medium'),
       color: 'text-safety-orange'
     },
     {
-      name: 'Mosquitoes',
+      name: t('pests.mosquitoes'),
       image: mosquitoesImage,
-      habitat: 'Standing water, gardens, humid areas',
-      healthRisk: 'Malaria, dengue fever, Zika virus, West Nile virus',
-      treatment: 'Larvicide application, adult mosquito control, source reduction',
-      severity: 'Very High',
+      habitat: t('pests.mosquitoes_habitat'),
+      healthRisk: t('pests.mosquitoes_health'),
+      treatment: t('pests.mosquitoes_treatment'),
+      severity: t('pests.very_high'),
       color: 'text-destructive'
     },
     {
-      name: 'Rodents',
+      name: t('pests.rodents'),
       image: rodentsImage,
-      habitat: 'Attics, basements, walls, storage areas',
-      healthRisk: 'Disease transmission, property damage, electrical fires',
-      treatment: 'Rodenticide placement, sealing entry points, trapping',
-      severity: 'High',
+      habitat: t('pests.rodents_habitat'),
+      healthRisk: t('pests.rodents_health'),
+      treatment: t('pests.rodents_treatment'),
+      severity: t('pests.high'),
       color: 'text-destructive'
     },
     {
-      name: 'Fleas',
+      name: t('pests.fleas'),
       image: '/api/placeholder/400/300',
-      habitat: 'Pet areas, carpets, upholstery',
-      healthRisk: 'Skin irritation, pet discomfort, potential disease transmission',
-      treatment: 'Insecticide application, pet treatment, vacuuming',
-      severity: 'Medium',
+      habitat: t('pests.fleas_habitat'),
+      healthRisk: t('pests.fleas_health'),
+      treatment: t('pests.fleas_treatment'),
+      severity: t('pests.medium'),
       color: 'text-safety-orange'
     },
     {
-      name: 'Termites',
+      name: t('pests.termites'),
       image: '/api/placeholder/400/300',
-      habitat: 'Wood structures, foundations, damp areas',
-      healthRisk: 'Structural damage, property value loss',
-      treatment: 'Liquid termiticides, bait stations, wood treatment',
-      severity: 'Very High',
+      habitat: t('pests.termites_habitat'),
+      healthRisk: t('pests.termites_health'),
+      treatment: t('pests.termites_treatment'),
+      severity: t('pests.very_high'),
       color: 'text-destructive'
     },
     {
-      name: 'Beetles',
+      name: t('pests.beetles'),
       image: '/api/placeholder/400/300',
-      habitat: 'Stored food, wood, fabric, gardens',
-      healthRisk: 'Food contamination, property damage',
-      treatment: 'Targeted spraying, food storage improvement, exclusion',
-      severity: 'Low',
+      habitat: t('pests.beetles_habitat'),
+      healthRisk: t('pests.beetles_health'),
+      treatment: t('pests.beetles_treatment'),
+      severity: t('pests.low'),
       color: 'text-secondary'
     },
     {
-      name: 'Flies',
+      name: t('pests.flies'),
       image: '/api/placeholder/400/300',
-      habitat: 'Garbage areas, organic waste, drains',
-      healthRisk: 'Disease transmission, food contamination',
-      treatment: 'Fly baits, residual sprays, sanitation improvement',
-      severity: 'Medium',
+      habitat: t('pests.flies_habitat'),
+      healthRisk: t('pests.flies_health'),
+      treatment: t('pests.flies_treatment'),
+      severity: t('pests.medium'),
       color: 'text-safety-orange'
-    },
-    {
-      name: 'Moths',
-      image: '/api/placeholder/400/300',
-      habitat: 'Clothing, stored food, pantries',
-      healthRisk: 'Property damage, food contamination',
-      treatment: 'Pheromone traps, targeted treatment, storage improvement',
-      severity: 'Low',
-      color: 'text-secondary'
     }
   ];
 
   const getSeverityColor = (severity: string) => {
     switch(severity) {
-      case 'Very High': return 'bg-destructive text-destructive-foreground';
-      case 'High': return 'bg-safety-orange text-white';
-      case 'Medium': return 'bg-yellow-500 text-white';
-      case 'Low': return 'bg-secondary text-secondary-foreground';
+      case t('pests.very_high'): return 'bg-destructive text-destructive-foreground';
+      case t('pests.high'): return 'bg-safety-orange text-white';
+      case t('pests.medium'): return 'bg-yellow-500 text-white';
+      case t('pests.low'): return 'bg-secondary text-secondary-foreground';
       default: return 'bg-muted text-muted-foreground';
     }
   };
@@ -131,10 +122,10 @@ const PestsThreats = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              {t('nav.pests')}
+              {t('pests.title')}
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Know your enemy. Learn about common pests, their health risks, and how SamDez can protect your property.
+              {t('pests.subtitle')}
             </p>
           </div>
         </div>
@@ -158,7 +149,7 @@ const PestsThreats = () => {
                   />
                   <div className="absolute top-4 right-4">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${getSeverityColor(pest.severity)}`}>
-                      {pest.severity} Risk
+                      {pest.severity} {t('pests.severity')}
                     </span>
                   </div>
                 </div>
@@ -177,7 +168,7 @@ const PestsThreats = () => {
                       <div>
                         <div className="flex items-center space-x-2 mb-1">
                           <Home className="w-4 h-4 text-muted-foreground" />
-                          <span className="text-sm font-medium text-foreground">Habitat</span>
+                          <span className="text-sm font-medium text-foreground">{t('pests.habitat')}</span>
                         </div>
                         <p className="text-xs text-muted-foreground pl-6">{pest.habitat}</p>
                       </div>
@@ -185,7 +176,7 @@ const PestsThreats = () => {
                       <div>
                         <div className="flex items-center space-x-2 mb-1">
                           <Heart className="w-4 h-4 text-muted-foreground" />
-                          <span className="text-sm font-medium text-foreground">Health Risk</span>
+                          <span className="text-sm font-medium text-foreground">{t('pests.health_risk')}</span>
                         </div>
                         <p className="text-xs text-muted-foreground pl-6">{pest.healthRisk}</p>
                       </div>
@@ -193,7 +184,7 @@ const PestsThreats = () => {
                       <div>
                         <div className="flex items-center space-x-2 mb-1">
                           <Shield className="w-4 h-4 text-muted-foreground" />
-                          <span className="text-sm font-medium text-foreground">Our Treatment</span>
+                          <span className="text-sm font-medium text-foreground">{t('pests.treatment')}</span>
                         </div>
                         <p className="text-xs text-muted-foreground pl-6">{pest.treatment}</p>
                       </div>
@@ -202,7 +193,7 @@ const PestsThreats = () => {
                     {/* Action */}
                     <Button variant="outline" size="sm" className="w-full">
                       <Phone className="w-4 h-4 mr-2" />
-                      Get Treatment
+                      {t('pests.get_treatment')}
                     </Button>
                   </div>
                 </CardContent>
@@ -217,19 +208,19 @@ const PestsThreats = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Prevention Tips
+              {t('pests.prevention_tips')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Simple steps you can take to reduce the risk of pest infestations
+              {t('pests.prevention_subtitle')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Home, title: 'Seal Entry Points', description: 'Close gaps around doors, windows, and pipes' },
-              { icon: Shield, title: 'Remove Food Sources', description: 'Store food properly and clean up spills immediately' },
-              { icon: CheckCircle, title: 'Eliminate Water', description: 'Fix leaks and remove standing water sources' },
-              { icon: Heart, title: 'Regular Cleaning', description: 'Maintain clean environments, especially kitchens' },
+              { icon: Home, title: t('pests.seal_entry'), description: t('pests.seal_entry_desc') },
+              { icon: Shield, title: t('pests.remove_food'), description: t('pests.remove_food_desc') },
+              { icon: CheckCircle, title: t('pests.eliminate_water'), description: t('pests.eliminate_water_desc') },
+              { icon: Heart, title: t('pests.regular_cleaning'), description: t('pests.regular_cleaning_desc') },
             ].map((tip, index) => {
               const IconComponent = tip.icon;
               return (
@@ -256,19 +247,19 @@ const PestsThreats = () => {
           <div className="text-center max-w-3xl mx-auto animate-fade-in">
             <AlertTriangle className="w-16 h-16 mx-auto mb-6" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Pest Emergency?
+              {t('pests.emergency_title')}
             </h2>
             <p className="text-xl text-destructive-foreground/90 mb-8">
-              Don't wait for the problem to get worse. Our emergency response team is available 24/7.
+              {t('pests.emergency_desc')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" className="shadow-card">
                 <Phone className="w-5 h-5 mr-2" />
-                Call Now: +998 90 123 45 67
+                {t('pests.call_now')}: +998 90 123 45 67
               </Button>
               <Link to="/contact">
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
-                  Request Service Online
+                  {t('pests.request_service')}
                 </Button>
               </Link>
             </div>

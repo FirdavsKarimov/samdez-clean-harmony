@@ -1,189 +1,262 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { 
+  Send, 
+  Phone, 
+  Mail, 
+  MapPin, 
+  Clock,
+  CheckCircle,
+  Shield,
+  Star
+} from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Mail, Phone, MessageSquare } from 'lucide-react';
-import { toast } from 'sonner';
 
-interface FormData {
-  name: string;
-  phone: string;
-  service: string;
-  message: string;
-}
-
-const ContactForm: React.FC = () => {
+const ContactForm = () => {
   const { t } = useLanguage();
-  const form = useForm<FormData>();
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    service: '',
+    message: ''
+  });
 
-  const onSubmit = (data: FormData) => {
-    console.log('Form submitted:', data);
-    toast.success(t('form.success'));
-    form.reset();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
   };
 
-  const services = [
-    { value: 'home', label: t('services.home') },
-    { value: 'office', label: t('services.office') },
-    { value: 'transport', label: t('services.transport') },
-    { value: 'antivirus', label: t('services.antivirus') },
-    { value: 'pest', label: t('services.pest') },
-    { value: 'garden', label: t('services.garden') },
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const contactInfo = [
+    {
+      icon: Phone,
+      title: 'Phone',
+      details: ['+998 90 123 45 67', '+998 91 987 65 43'],
+      color: 'bg-blue-500'
+    },
+    {
+      icon: Mail,
+      title: 'Email',
+      details: ['info@SamDezin.uz', 'emergency@SamDezin.uz'],
+      color: 'bg-green-500'
+    },
+    {
+      icon: MapPin,
+      title: 'Address',
+      details: ['Tashkent, Uzbekistan', 'Yunusobod District'],
+      color: 'bg-purple-500'
+    },
+    {
+      icon: Clock,
+      title: 'Working Hours',
+      details: ['Mon-Fri: 8:00-18:00', 'Emergency: 24/7'],
+      color: 'bg-orange-500'
+    }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-background to-secondary/5 relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {t('form.title')}
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              {t('form.subtitle')}
-            </p>
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <Send className="w-4 h-4" />
+            <span>Get In Touch</span>
+          </div>
+          
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            {t('contact.get_free_consultation')}
+          </h2>
+          
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            {t('contact.fill_form_desc')}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          
+          {/* Contact Form */}
+          <div>
+            <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        {t('contact.name')}
+                      </label>
+                      <Input
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder={t('contact.name_placeholder')}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Phone
+                      </label>
+                      <Input
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="+998 90 123 45 67"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Email
+                    </label>
+                    <Input
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="your@email.com"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      {t('contact.service_needed')}
+                    </label>
+                    <select
+                      name="service"
+                      value={formData.service}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white"
+                    >
+                      <option value="">{t('contact.select_service')}</option>
+                      <option value="home">{t('contact.service.home')}</option>
+                      <option value="office">{t('contact.service.office')}</option>
+                      <option value="transport">{t('contact.service.transport')}</option>
+                      <option value="pest">{t('contact.service.pest')}</option>
+                      <option value="garden">{t('contact.service.garden')}</option>
+                      <option value="emergency">{t('contact.service.emergency')}</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Message
+                    </label>
+                    <Textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder={t('contact.message_placeholder')}
+                      rows={4}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                    />
+                  </div>
+
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  >
+                    <Send className="w-5 h-5 mr-2" />
+                    {t('contact.send_message')}
+                  </Button>
+
+                  <p className="text-xs text-gray-500 text-center">
+                    {t('contact.privacy_policy')}
+                  </p>
+                </form>
+              </CardContent>
+            </Card>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Contact Info */}
-            <div className="space-y-8">
-              <div className="bg-card rounded-2xl p-8 shadow-card border">
-                <h3 className="text-2xl font-bold text-foreground mb-6">
-                  {t('contact.title')}
-                </h3>
-                
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-primary-foreground" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">{t('contact.phone')}</p>
-                      <p className="text-lg font-semibold text-foreground">+998 90 123 45 67</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
-                      <Mail className="w-6 h-6 text-secondary-foreground" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">{t('contact.email')}</p>
-                      <p className="text-lg font-semibold text-foreground">info@samdez.uz</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
-                      <MessageSquare className="w-6 h-6 text-accent-foreground" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">{t('contact.address')}</p>
-                      <p className="text-lg font-semibold text-foreground">Tashkent, Uzbekistan</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Emergency Notice */}
-              <div className="bg-destructive/10 border border-destructive/20 rounded-2xl p-6">
-                <h4 className="font-bold text-destructive mb-2">
-                  {t('hero.emergency_service')}
-                </h4>
-                <p className="text-muted-foreground text-sm">
-                  {t('hero.emergency')}
-                </p>
-              </div>
+          {/* Contact Information */}
+          <div>
+            <div className="space-y-6">
+              {contactInfo.map((info, index) => {
+                const IconComponent = info.icon;
+                return (
+                  <Card key={index} className="border-0 shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className={`w-12 h-12 ${info.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                          <IconComponent className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                            {info.title}
+                          </h3>
+                          <div className="space-y-1">
+                            {info.details.map((detail, i) => (
+                              <p key={i} className="text-gray-600">
+                                {detail}
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
 
-            {/* Contact Form */}
-            <div className="bg-card rounded-2xl p-8 shadow-card border">
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t('form.name')}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={t('form.name')} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+            {/* Emergency Service Card */}
+            <Card className="mt-8 border-0 bg-gradient-to-r from-red-500 to-red-600 text-white shadow-2xl">
+              <CardContent className="p-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                    <Shield className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">
+                      {t('contact.emergency_service_title')}
+                    </h3>
+                    <p className="text-red-100 mb-4">
+                      {t('contact.emergency_service_desc')}
+                    </p>
+                    <Button className="bg-white text-red-600 hover:bg-gray-100 font-semibold">
+                      <Phone className="w-4 h-4 mr-2" />
+                      +998 90 123 45 67
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t('form.phone')}</FormLabel>
-                        <FormControl>
-                          <Input placeholder="+998 90 123 45 67" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="service"
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t('form.service')}</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder={t('form.service')} />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {services.map((service) => (
-                              <SelectItem key={service.value} value={service.value}>
-                                {service.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t('form.message')}</FormLabel>
-                        <FormControl>
-                          <Textarea 
-                            placeholder={t('form.message')}
-                            className="min-h-[120px]"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <Button type="submit" size="lg" className="w-full">
-                    <MessageSquare className="w-5 h-5 mr-2" />
-                    {t('form.submit')}
-                  </Button>
-                </form>
-              </Form>
+            {/* Trust Indicators */}
+            <div className="mt-8 bg-gray-50 rounded-2xl p-6">
+              <h4 className="font-semibold text-gray-900 mb-4">Why Choose Us?</h4>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-sm text-gray-600">Free Consultation</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-sm text-gray-600">Eco-Friendly Products</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-sm text-gray-600">24/7 Emergency Service</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-sm text-gray-600">Satisfaction Guarantee</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
